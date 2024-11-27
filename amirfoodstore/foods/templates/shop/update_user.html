@@ -1,0 +1,23 @@
+{% extends "shop/layout.html" %}
+{% block mainContent %}
+{% csrf_token %}
+`<center>
+    <strong>billing information</strong>
+    <form action="{% url 'update_user' %}" method="POST" >
+        {% csrf_token %}
+
+        {{form.as_p}}
+
+        <br>
+        <br>
+        <br>
+        {{shipping_form.as_p}}
+
+
+            <button type="submit" class="btn btn-success">update</button>
+
+        <a href="{% url 'update_password' %}" class="button">update password</a>
+
+    </form>
+</center>`
+{% endblock %}

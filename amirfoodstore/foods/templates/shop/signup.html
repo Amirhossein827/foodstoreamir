@@ -1,0 +1,13 @@
+{% extends "shop/layout.html" %}
+{% block mainContent %}
+{% csrf_token %}
+
+
+ <form action="{% url 'register' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        {{form.as_p}}
+            <button type="submit" class="btn btn-success">ثبت نام</button>
+
+</form>
+{% endblock %}

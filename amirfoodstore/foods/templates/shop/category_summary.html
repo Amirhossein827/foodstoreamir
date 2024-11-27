@@ -1,0 +1,8 @@
+{% extends "shop/layout.html" %}
+
+{% block mainContent %}
+{% for cat in category %}
+<a href="{% url 'category' cat.name %}"><h3>{{cat}}</h3></a>
+{% endfor %}
+
+{% endblock %}

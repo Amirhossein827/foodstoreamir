@@ -1,0 +1,14 @@
+{% extends 'shop/layout.html' %}
+
+{% block mainContent %}
+{% csrf_token %}
+<form method="POST" action="{% url 'send_otp' %}">
+    {% csrf_token %}
+    <br/><br/>
+    <input type="text" name="sent_otp">
+    <button type="submit" class="btn btn-secondary">
+      send
+    </button>
+</form>
+
+{% endblock %}

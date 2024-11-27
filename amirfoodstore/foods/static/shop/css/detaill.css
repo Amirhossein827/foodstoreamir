@@ -1,0 +1,169 @@
+*{ box-sizing: border-box; }
+
+body{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas:
+     'header  header  header '
+     '.       .       .      '
+     'nav     nav     nav    '
+     'main    section section'
+     'main    section section'
+     'main    section section'
+     'footer  footer  footer';
+
+  grid-gap: 1em;
+  background-image: url(https://cdn.shopify.com/s/files/1/2504/3282/files/marbles_seemless.jpg?5912703254077228492);
+
+  font-family: 'Kanit', sans-serif;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+
+
+  background-color: #fff;
+
+}
+
+.item1{ grid-area: header;
+        padding: 2px;
+}
+.menu{ grid-area: nav;
+       grid-area: 2/1 span 2/4;
+       padding: 10px;
+}
+.item2{ grid-area: main;
+        grid-area: 4/1;
+        width: 40%;
+}
+.item3{ grid-area: main;
+        grid-area: 5/1;
+}
+.item4{ grid-area: main;
+        grid-area: 6/1;
+}
+
+.item5{ grid-area: section;
+        grid-area: 4/2 span 4/4;
+
+}
+.item6{ grid-area: footer;
+        padding: 1.5em;
+}
+
+@media only screen and (max-width: 415px) {
+  body {
+    grid-template-areas:
+      'header'
+      'nav'
+      'section'
+      'main'
+      'main'
+      'main'
+      'footer';
+  }
+}
+
+header, nav, main, aside, footer{
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 10px;
+  color: #123b1d;
+ }
+
+/*header*/
+.company{
+  position: relative;
+  text-align: center;
+  font-size: 60px;
+  margin-top: 30px;
+  margin-left: 10px;
+}
+
+.slogan{
+  position: relative;
+  text-align: center;
+  margin-left: 30px;
+  line-height: 0;
+  margin-top: -30px;
+}
+
+
+
+a{
+  text-decoration: none;
+  font-size: 16px;
+  position: relative;
+  margin-left:0px;
+
+}
+
+.account{
+  margin-left: 10em;
+}
+
+/*cards*/
+.card1, .card2, .card3{
+  font-size: 1em;
+  padding: 2rem;
+
+}
+
+img{
+  height: auto;
+  width: 100%;
+}
+
+h3{
+  font-size: 1.8em;
+}
+
+.cardanchor{
+  line-height: 1;
+}
+
+.price{
+  font-size: 2.5em;
+}
+
+td{
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.3);
+  padding: 0.5em;
+}
+
+.cardbtn{
+  padding: .5em;
+  border-radius: 10px;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.3);
+  cursor: pointer;
+}
+
+/*aside*/
+.salecard{
+  text-transform: uppercase;
+  font-size: 4em;
+  text-align: center;
+
+}
+
+
+/*footer*/
+.footer{
+  position: relative;
+  margin-left: 0px;
+  padding: .8em;
+}
+
+
+
+/*media queries*/
+@media only screen and (max-width: 415px) {
+  .account {
+    margin-left: 0;
+  }
+}
+
+

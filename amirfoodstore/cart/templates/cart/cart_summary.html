@@ -1,0 +1,112 @@
+{% extends "shop/layout.html" %}
+
+{% block mainContent %}
+<br>
+<br>
+<br>
+<br>
+<br>
+{% if cart_products %}
+{% for products in cart_products %}
+<main class="item2 align-items-lg-center">
+        <div class="card1">
+        <img src="{{products.image.url}}" style="height: 100%; width: 100%">
+
+        <div class="price">{{products.price}}</div>
+
+        <div class="content">
+            <h3>{{products.name}}</h3>
+            <a href="#" target="_blank" class="cardanchor"><p>{{products.category}}</p></a>
+            <a href="#" target="_blank" class="cardanchor"><p>{{products.id}}</p></a>
+            <select class="form-select" id="select{{products.id}}">
+
+
+                    {% for key,value in quantities.items %}
+                        {% if key == products.id|slugify %}
+                            <option selected>{{ value }} </option>
+                        {% endif %}
+                    {% endfor %}
+
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+            <button type="button" data-index={{ products.id }}
+            class="btn btn-primary update-cart">ویرایش</button>
+            <button type="button" data-index={{ products.id }}
+            class="btn btn-danger delete-product">حذف</button>
+
+
+
+        </div>
+        </div>
+    </main>
+
+{% endfor %}
+<h1>مجموع کل سفارشات :{{total}}</h1>
+{% else  %}
+<center><h2> ;&#128528;	; برگه خرید شما خالی است</h2></center>
+{% endif %}
+<br>
+<br>
+<br>
+<script>
+        $(document).on('click' , '.update-cart' , function(e){
+
+                e.preventDefault();
+
+
+                var productid = $(this).data('index')
+                $.ajax({
+                    type:'POST',
+                    url: '{% url "cart_update" %}',
+                    data:{
+                        product_id: $(this).data('index'),
+                        product_qty:$('#select'+productid+' option:selected').text(),
+                        csrfmiddlewaretoken:'{{csrf_token}}',
+                        action:'post'
+                    },
+                    success: function (json){
+                    // console.log(json)
+                    //     document.getElementById("span_count").textContent = json.qty
+                    location.reload();
+                    },
+                    error: function (xhr , errmsg , err){
+
+                    }
+                })
+            }
+        )
+
+        $(document).on('click' , '.delete-product' , function(e){
+
+                e.preventDefault();
+
+
+
+                $.ajax({
+                    type:'POST',
+                    url: '{% url "cart_delete" %}',
+                    data:{
+                        product_id: $(this).data('index'),
+
+                        csrfmiddlewaretoken:'{{csrf_token}}',
+                        action:'post'
+                    },
+                    success: function (json){
+                    // console.log(json)
+                    //     document.getElementById("span_count").textContent = json.qty
+                    location.reload();
+                    },
+                    error: function (xhr , errmsg , err){
+
+                    }
+                })
+            }
+        )
+
+
+
+</script>
+
+{% endblock %}

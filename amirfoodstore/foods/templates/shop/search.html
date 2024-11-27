@@ -1,0 +1,24 @@
+{% extends "shop/layout.html" %}
+
+{% block mainContent %}
+<div class="card">
+  <div class="card-header">
+    جستوجو در محصولات
+  </div>
+  <div class="card-body">
+    <form method="POST" action="{% url 'search' %}">
+        {%csrf_token%}
+        <div class="mb-3">
+  <input type="text" class="form-control" placeholder="search for products" name="searched">
+</div>
+    <button type="submit" class="btn btn-secondary ">search</button>
+    </form>
+  </div>
+</div>
+{% if searched %}
+{% for product in searched %}
+
+{{product}}
+{% endfor %}
+{% endif %}
+{% endblock %}

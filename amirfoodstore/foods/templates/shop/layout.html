@@ -1,0 +1,93 @@
+{% load static %}
+
+
+
+<html lang="en">
+  {% csrf_token %}
+
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Shop Homepage - Start Bootstrap Template</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{% static 'shop/css/index.css' %}" rel="stylesheet" />
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    </head>
+    <body dir="rtl">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="#!">فروشگاه من</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">خانه</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#!">درباره</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'search' %}">جستوجو</a></li>
+
+                        {% if user.is_authenticated %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">logout</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'update_user' %}">profile</a></li>
+
+                        <li class="nav-item"><a class="nav-link" href="{% url 'update_password' %}">updatepassword</a></li>
+
+                        {% else %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">login</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">signup</a></li>
+
+
+
+
+
+                        {% endif %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">فروشگاه</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="{% url 'category_summary' %}">دسته بندی ها</a></li>
+                                <li><hr class="dropdown-divider" /></li>
+                                <li><a class="dropdown-item" href="{% url 'category' 'غذا' %}">غذا</a></li>
+                                <li><a class="dropdown-item" href="{% url 'category' 'لوازم-خانگی' %}">لوازم خانگی</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="d-flex">
+                        <a href="{% url 'cart_summary' %}">
+                             <i class="bi-cart-fill me-1"></i>
+                            سبد خرید
+                            <span class="badge bg-dark text-white ms-1 rounded-pill" id="span_count">{{ cart|length }}</span>
+                        </a>
+
+
+                    </form>
+                </div>
+            </div>
+        </nav>
+        <!-- Header-->
+        <header class="bg-dark py-5">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="text-center text-white">
+                    <h1 class="display-4 fw-bolder">فروشگاه من</h1>
+                    <p class="lead fw-normal text-white-50 mb-0">به فروشگاه من خوش امدید</p>
+                </div>
+            </div>
+        </header>
+        <!-- Section-->
+        <section class="section">
+             {% block mainContent %} {% endblock %}
+        </section>
+        <!-- Footer-->
+        <footer class="py-5 bg-dark">
+            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="{% static 'shop/js/index.js' %}"></script>
+    </body>
+</html>

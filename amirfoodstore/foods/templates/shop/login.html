@@ -1,0 +1,22 @@
+{% extends "shop/layout.html" %}
+{% block mainContent %}
+
+
+<form action="{% url 'login' %}" method="POST" class="form">
+  {% csrf_token %}
+
+  <div class="mb-3">
+    <label  class="form-label">Email address</label>
+    <input type="text" name="username" placeholder="نام کاربری خود را وارد نمایید" class="form-control"  aria-describedby="emailHelp">
+  </div>
+  <div class="mb-3">
+    <label  class="form-label">Password</label>
+    <input type="password" name="password" placeholder="رمز عبور  خود را وارد نمایید" class="form-control" >
+  </div>
+  <div class="mb-3 form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+  </div>
+  <button type="submit" value="ورود" class="btn btn-primary">Submit</button>
+</form>
+{% endblock %}
